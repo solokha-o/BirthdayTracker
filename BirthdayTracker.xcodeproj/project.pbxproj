@@ -16,8 +16,6 @@
 		DB3DEFE623C5E2A300D536BB /* BirthdayTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3DEFE523C5E2A300D536BB /* BirthdayTrackerTests.swift */; };
 		DB3DEFF123C5E2A300D536BB /* BirthdayTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3DEFF023C5E2A300D536BB /* BirthdayTrackerUITests.swift */; };
 		DB62111923E016A40063FBFF /* BirthdaysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB62111823E016A40063FBFF /* BirthdaysTableViewController.swift */; };
-		DB95EA8923E5BDAF00B60BB6 /* birthday-toy-balloon-party-birthday-png-clip-art.png in Resources */ = {isa = PBXBuildFile; fileRef = DB95EA8823E5BDAF00B60BB6 /* birthday-toy-balloon-party-birthday-png-clip-art.png */; };
-		DBF91B7523D7627B00D551B7 /* Birthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF91B7423D7627B00D551B7 /* Birthday.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +51,6 @@
 		DB3DEFF023C5E2A300D536BB /* BirthdayTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayTrackerUITests.swift; sourceTree = "<group>"; };
 		DB3DEFF223C5E2A300D536BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB62111823E016A40063FBFF /* BirthdaysTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdaysTableViewController.swift; sourceTree = "<group>"; };
-		DB95EA8823E5BDAF00B60BB6 /* birthday-toy-balloon-party-birthday-png-clip-art.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "birthday-toy-balloon-party-birthday-png-clip-art.png"; path = "../../../../Downloads/birthday-toy-balloon-party-birthday-png-clip-art.png"; sourceTree = "<group>"; };
-		DBF91B7423D7627B00D551B7 /* Birthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Birthday.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,12 +103,10 @@
 			children = (
 				DB3DEFCD23C5E2A200D536BB /* AppDelegate.swift */,
 				DB3DEFCF23C5E2A200D536BB /* AddBirthdayViewController.swift */,
-				DBF91B7423D7627B00D551B7 /* Birthday.swift */,
 				DB62111823E016A40063FBFF /* BirthdaysTableViewController.swift */,
 				DB3DEFD123C5E2A300D536BB /* Main.storyboard */,
 				DB3DEFD723C5E2A300D536BB /* Assets.xcassets */,
 				DB3DEFD923C5E2A300D536BB /* LaunchScreen.storyboard */,
-				DB95EA8823E5BDAF00B60BB6 /* birthday-toy-balloon-party-birthday-png-clip-art.png */,
 				DB3DEFDC23C5E2A300D536BB /* Info.plist */,
 				DB3DEFD423C5E2A300D536BB /* BirthdayTracker.xcdatamodeld */,
 			);
@@ -247,7 +241,6 @@
 				DB3DEFDB23C5E2A300D536BB /* LaunchScreen.storyboard in Resources */,
 				DB3DEFD823C5E2A300D536BB /* Assets.xcassets in Resources */,
 				DB3DEFD323C5E2A300D536BB /* Main.storyboard in Resources */,
-				DB95EA8923E5BDAF00B60BB6 /* birthday-toy-balloon-party-birthday-png-clip-art.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +266,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB62111923E016A40063FBFF /* BirthdaysTableViewController.swift in Sources */,
-				DBF91B7523D7627B00D551B7 /* Birthday.swift in Sources */,
 				DB3DEFD023C5E2A200D536BB /* AddBirthdayViewController.swift in Sources */,
 				DB3DEFD623C5E2A300D536BB /* BirthdayTracker.xcdatamodeld in Sources */,
 				DB3DEFCE23C5E2A200D536BB /* AppDelegate.swift in Sources */,

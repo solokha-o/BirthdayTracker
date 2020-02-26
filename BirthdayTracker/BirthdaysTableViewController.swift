@@ -7,20 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
-class BirthdaysTableViewController: UITableViewController, AddBirthdayViewControllerDelegate {
-    
-    // MARK: - AddBirthdayViewControllerDelegate
-
-    
-    
-    func addBirthdayViewController(_ addBirthdayViewController: AddBirthdayViewController, didAddBirthday birthday: Birthday) {
-        birthdays.append(birthday)
-        tableView.reloadData()
-    }
+class BirthdaysTableViewController: UITableViewController {
     
     
     
+    @IBOutlet var birthdayTableView: UITableView!
     
     var birthdays = [Birthday]()
     
@@ -28,11 +21,25 @@ class BirthdaysTableViewController: UITableViewController, AddBirthdayViewContro
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = Birthday.fetchRequest() as NSFetchRequest<Birthday>
+        do {
+            birthdays = try context.fetch(fetchRequest)
+        } catch let error {
+            print("Не удалось загрузить данные из-за ошибки: \(error).")
+            
+        }
+        tableView.reloadData()
         dateFormatter.dateStyle = .full
         dateFormatter.timeStyle = .none
+        tableView.tableFooterView = UIView()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+      
+    }
     
 
     // MARK: - Table view data source
@@ -53,38 +60,89 @@ class BirthdaysTableViewController: UITableViewController, AddBirthdayViewContro
 
         // Configure the cell...
         let birthday = birthdays[indexPath.row]
-        cell.textLabel?.text = birthday.firstName + " " + birthday.lastName
-        cell.detailTextLabel?.text = dateFormatter.string(from: birthday.birthDate)
+        let firstName = birthday.firstName ?? ""
+        let lastName = birthday.lastName ?? ""
+        cell.textLabel?.text = firstName + " " + lastName
+        if let date = birthday.birthDate as Date? {
+            cell.detailTextLabel?.text = dateFormatter.string(from: date)
+        } else {
+            cell.detailTextLabel?.text = " "
+        }
         return cell
     }
     
 
-    /*
+    
     // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
+   
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let contextItem = UIContextualAction(style: .destructive, title: "DELETE") {  [weak self] (_, _, _) in
+           // let birthday = self?.birthdays[indexPath.row]
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            context.delete((self?.birthdays[indexPath.row])!)
+            self?.birthdays.remove(at: indexPath.row)
+            print("Remove birthday \(String(describing: self?.birthdays[indexPath.row]))")
+            self?.tableView.deleteRows(at:[indexPath],with: .fade)
+            do{
+                try context.save()
+            } catch let error {
+                print("Не удалось сохранить из-за ошибки \(error).")
+            }
+      //      self?.tableView.reloadSections([indexPath.section], with: .automatic)
+            print("DELETE HAPPENS")
+        }
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+        swipeActions.performsFirstActionWithFullSwipe = false
+        
+        return swipeActions
 
-    /*
+    }
+    
+    // TODO - finish moveRow in Core Data
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let element1 = birthdays[sourceIndexPath.row]
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        context.delete(element1)
+        birthdays.remove(at: sourceIndexPath.row)
+        birthdays.insert(element1, at: destinationIndexPath.row)
+        let element2 = birthdays[destinationIndexPath.row]
+        context.insert(element2)
+        do{
+            try context.save()
+        } catch let error {
+            print("Не удалось сохранить из-за ошибки \(error).")
+        }
+        print(birthdays)
+    }
+    @IBAction func editAction(_ sender: UIBarButtonItem) {
+        tableView.setEditing(!tableView.isEditing, animated: true)
+        sender.title = tableView.isEditing ? "Done" : "Edit"
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .none
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let birthday = birthdays[indexPath.row]
+        performSegue(withIdentifier: "ShowDetails", sender: birthday)
+    }
+
+    
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        switch editingStyle {
+//        case .none:
+//            print("None")
+//        default:
+//            return
+//        }
+//    }
+    
 
     /*
     // Override to support conditional rearranging of the table view.
@@ -95,14 +153,6 @@ class BirthdaysTableViewController: UITableViewController, AddBirthdayViewContro
     */
 
     
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let navigatorController = segue.destination as! UINavigationController
-        let addBirthdayViewController = navigatorController.topViewController as! AddBirthdayViewController
-        addBirthdayViewController.delegate = self
-    }
-    
+   
 
 }

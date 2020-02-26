@@ -42,6 +42,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="wvg-mK-QEw" kind="show" identifier="ShowDetails" id="JK5-Jb-mLe"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -50,12 +53,21 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Birthdays" id="ZZG-IZ-AVn">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" style="plain" id="STB-Ke-uJn">
+                            <connections>
+                                <action selector="editAction:" destination="Rel-Wo-lIz" id="M0i-TT-E7g"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="nB9-OI-CCG">
                             <connections>
                                 <segue destination="YJG-cD-hVt" kind="presentation" id="yU4-Ws-OdI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="birthdayTableView" destination="6Y5-ez-kZr" id="oU0-ae-Pt3"/>
+                        <outlet property="tableView" destination="6Y5-ez-kZr" id="rHG-3P-dgo"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qU9-of-XPT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -203,7 +215,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QoB-qT-1jU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-73" y="95"/>
+            <point key="canvasLocation" x="-92" y="-277"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="JK5-Jb-mLe"/>
+    </inferredMetricsTieBreakers>
 </document>
