@@ -23,7 +23,6 @@ class AddBirthdayViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         birthdatePicker.maximumDate = Date()
     }
-    
     @IBAction func saveTapped(_ sender: UIBarButtonItem) {
         print("Button is ON!")
         
@@ -57,6 +56,8 @@ class AddBirthdayViewController: UIViewController {
     @IBAction func cancelTapped(_ sendr: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+    
+    
     
 }
 

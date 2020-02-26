@@ -76,7 +76,7 @@
         <!--Add Birthday-->
         <scene sceneID="4Gf-rZ-Y7n">
             <objects>
-                <viewController title="Add Birthday" id="wvg-mK-QEw" customClass="AddBirthdayViewController" customModule="BirthdayTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddBirthdayViewController" title="Add Birthday" id="wvg-mK-QEw" customClass="AddBirthdayViewController" customModule="BirthdayTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W1Y-Xu-wAA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

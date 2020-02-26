@@ -36,10 +36,7 @@ class BirthdaysTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-      
-    }
+    
     
 
     // MARK: - Table view data source
@@ -130,6 +127,13 @@ class BirthdaysTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let birthday = birthdays[indexPath.row]
         performSegue(withIdentifier: "ShowDetails", sender: birthday)
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddBirthdayViewController") as? AddBirthdayViewController else { return }
+        _ = vc.view
+        vc.firstNameTextField.text = birthday.firstName
+        vc.lastNameTextField.text = birthday.lastName
+        vc.birthdatePicker.date = birthday.birthDate!
+        vc.viewDidLoad()
+//        present(vc, animated: true, completion: nil)
     }
 
     
